@@ -15,6 +15,16 @@
 body{
     background-color:grey;
 }
+
+.parent{
+    display:flex;
+    flex-direction: row;
+    height:450px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .background-container{
     display: flex;               
     justify-content: center;      
@@ -30,4 +40,42 @@ body{
     height:410px;
     width:626px;
     border-style: inset;
+    margin: 30px;
+}
+#hometask{
+    background-image: image-url('scroll.png');
+    background-size: cover;         
+    background-position: center top; 
+    background-repeat: no-repeat;
+    resize: vertical;
+    overflow: auto;
+    display: inline;
+    width: 800px;
+    height: 800px;
+    max-height:800px;
+}
+
+#class-header{
+    font-size: 12px;
+}
+.task-header{
+    font-size: 12px;
+    color:black;
+    text-align:center;
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    position: relative;
+    top:80px;
+}
+#task-list{
+    color:black;
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 8px;  
+    text-align: center;
+    align-items: center;
+    position:relative;
+    top:80px;
 }
