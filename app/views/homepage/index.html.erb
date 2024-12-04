@@ -2,16 +2,31 @@
 
 <div>
 <% if user_signed_in? %>
-        <p class = "text"><%= current_user.username %> has logged in!</p>  
-        <%= link_to "Profile", edit_user_registration_path %>
+        <p class = "text"><%= current_user.username %> has logged in!</p>   
         <%= button_to "Log Out", destroy_user_session_path, method: :delete %>
 <% else %>
         <%= button_to "Sign In", new_user_session_path %> 
 <% end %>
 </div>
 
-<div class ="background-container">
-    <div class="background-image">
+<div class ="parent">
+
+    <div class ="background-container">
+        <div class="background-image">
+        </div>
     </div>
+
+        <div id="hometask">
+            <h1 class="task-header" id="class-header">Tasks</h1>
+
+                <% if @tasks.any? %>
+                    <ul id="task-list">
+                        <% @tasks.each do |task| %>
+                        <li>Task : <%= task.name %> | Difficulty : <%= task.xp_reward %> | Complete By: <%= task.due_date %></li><br>
+                        <% end %>
+                    </ul>
+                <% else %>
+                    <p>Completed all task!</p>
+                <% end %>
+        </div>  
 </div>
-<%= link_to "Categories", categories_path %>
