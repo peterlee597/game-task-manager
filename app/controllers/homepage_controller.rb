@@ -4,7 +4,6 @@ class HomepageController < ApplicationController
   end
   
   def show 
-
   end 
 
 end
