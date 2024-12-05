@@ -58,3 +58,6 @@ end
 
 gem "devise", "~> 4.9"
 gem 'sassc-rails'
+gem 'omniauth-google-oauth2'
+gem 'omniauth'
+gem "omniauth-rails_csrf_protection", "~> 1.0"

@@ -1,13 +1,13 @@
 <h1 class="header">Gamer Task Manager</h1>
 
-<div>
 <% if user_signed_in? %>
-        <p class = "text"><%= current_user.username %> has logged in!</p>   
-        <%= button_to "Log Out", destroy_user_session_path, method: :delete %>
+<h2 class="header"><%= current_user.username %> has signed in!</h2>
+<%= link_to "Edit Account", edit_user_registration_path %>
+<%= button_to "Logout", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
 <% else %>
-        <%= button_to "Sign In", new_user_session_path %> 
+<%= link_to "Login", new_user_session_path %>
+<%= link_to "Create Account", new_user_registration_path %>
 <% end %>
-</div>
 
 <div class ="parent">
 
@@ -18,7 +18,7 @@
 
         <div id="hometask">
             <h1 class="task-header" id="class-header">Tasks</h1>
-
+                <% if user_signed_in? %>
                 <% if @tasks.any? %>
                     <ul id="task-list">
                         <% @tasks.each do |task| %>
@@ -26,7 +26,8 @@
                         <% end %>
                     </ul>
                 <% else %>
-                    <p>Completed all task!</p>
+                <% end %>
+                <% else %>
                 <% end %>
         </div>  
 </div>
