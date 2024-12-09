@@ -1,0 +1,30 @@
+<h1>Create a New Goal</h1>
+
+<%= form_with(model: @goal, local: true) do |form| %>
+  <% if @goal.errors.any? %>
+    <div>
+      <h2>Errors:</h2>
+      <ul>
+        <% @goal.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.submit "Create Goal" %>
+  </div>
+<% end %>
+
+<%= link_to 'Back to Goals', goals_path %>

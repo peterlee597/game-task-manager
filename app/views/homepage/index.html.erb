@@ -39,27 +39,25 @@
     <iframe src="https://calendar.google.com/calendar/embed?src=peterlee597%40gmail.com&ctz=America%2FChicago"
      style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
     </div>
-<div>
-    <h1>Create a New Event</h1>
-    <form id="create-event-form">
-    <label for="event-summary">Event Title:</label>
-    <input type="text" id="event-summary" required />
 
-    <label for="event-location">Location:</label>
-    <input type="text" id="event-location" />
-
-    <label for="event-description">Description:</label>
-    <textarea id="event-description"></textarea>
-
-    <label for="event-start-time">Start Time:</label>
-    <input type="datetime-local" id="event-start-time" required />
-
-    <label for="event-end-time">End Time:</label>
-    <input type="datetime-local" id="event-end-time" required />
-
-    <button type="submit">Create Event</button>
-    </form>
-
-</div>
+    <div>
+    <h2>Your Goals</h2>
+    <%= link_to "Create New Goal", new_goal_path %>
+    
+    <% if @goals.any? %>
+      <ul>
+        <% @goals.each do |goal| %>
+          <li>
+            <strong><%= goal.title %></strong>
+            <p><%= goal.description %></p>
+            <%= link_to "Edit", edit_goal_path(goal) %> |
+            <%= link_to "Delete", goal_path(goal), method: :delete, data: { confirm: "Are you sure?" } %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>You haven't created any goals yet. <%= link_to "Create your first goal", new_goal_path %></p>
+    <% end %>
+    </div>
 </div>
 
