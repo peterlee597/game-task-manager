@@ -61,3 +61,4 @@ gem 'sassc-rails'
 gem 'omniauth-google-oauth2'
 gem 'omniauth'
 gem "omniauth-rails_csrf_protection", "~> 1.0"
+gem 'google-apis-calendar_v3'
