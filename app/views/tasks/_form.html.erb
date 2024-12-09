@@ -26,6 +26,11 @@
     <%= form.date_field :due_date %>
   </div>
 
+  <%= form.label :start_time %>
+  <%= form.datetime_local_field :start_time %> 
+  
+  <%= form.label :end_time %>
+  <%= form.datetime_local_field :end_time %>
   <div>
     <%= form.label :xp_reward, style: "display: block" %>
     <%= form.select :xp_reward, Task.xp_rewards.keys.map { |key| [key.humanize, key.to_s] }, prompt: "Select an XP Reward" %>

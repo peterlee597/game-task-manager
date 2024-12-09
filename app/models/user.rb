@@ -23,24 +23,6 @@ class User < ApplicationRecord
     )
     user
   end
-
-  def refresh_google_token
-    return unless google_refresh_token.present?
-
-    client = Signet::OAuth2::Client.new(
-      Rails.application.credentials.dig(:google, :client_id),
-      Rails.application.credentials.dig(:google, :client_secret_id),
-      refresh_token: google_refresh_token,
-      token_credential_uri: 'https://oauth2.googleapis.com/token'
-    )
-
-    # Fetch new access token
-    response = client.fetch_access_token!
-
-    # Save the new token in the database
-    update(google_token: response['access_token'])
-  end
-
   private
 
   def create_level_if_needed
