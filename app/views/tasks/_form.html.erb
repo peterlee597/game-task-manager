@@ -28,7 +28,7 @@
 
   <div>
     <%= form.label :xp_reward, style: "display: block" %>
-    <%= form.select :xp_reward, Task.xp_rewards.keys %>
+    <%= form.select :xp_reward, Task.xp_rewards.keys.map { |key| [key.humanize, key.to_s] }, prompt: "Select an XP Reward" %>
   </div>
 
   <div>
