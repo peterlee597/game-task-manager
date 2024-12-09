@@ -312,6 +312,10 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   config.omniauth :google_oauth2, 
-    Rails.application.credentials.dig(:client_id),
-    Rails.application.credentials.dig(:client_secret_id)
+    Rails.application.credentials.dig(:google, :client_id),
+    Rails.application.credentials.dig(:google, :client_secret_id),
+    scope: 'email,profile,https://www.googleapis.com/auth/calendar,offline',
+    access_type: 'offline',
+    prompt: 'consent'
+
 end

@@ -12,7 +12,7 @@ class TasksController < ApplicationController
 
   
   def new
-    @task = current_user.Task.new
+    @task = current_user.tasks.build
     @categories = Category.all
     @users = User.all
   end

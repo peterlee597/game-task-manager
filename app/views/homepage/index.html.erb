@@ -1,3 +1,8 @@
+
+<% content_for :javascript do %>
+    <%= javascript_include_tag "index", type: "module" %>
+  <% end %>
+
 <h1 class="header">Gamer Task Manager</h1>
 
 <% if user_signed_in? %>
@@ -30,4 +35,31 @@
                 <% else %>
                 <% end %>
         </div>  
+    <div = "calendar">                     
+    <iframe src="https://calendar.google.com/calendar/embed?src=peterlee597%40gmail.com&ctz=America%2FChicago"
+     style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    </div>
+<div>
+    <h1>Create a New Event</h1>
+    <form id="create-event-form">
+    <label for="event-summary">Event Title:</label>
+    <input type="text" id="event-summary" required />
+
+    <label for="event-location">Location:</label>
+    <input type="text" id="event-location" />
+
+    <label for="event-description">Description:</label>
+    <textarea id="event-description"></textarea>
+
+    <label for="event-start-time">Start Time:</label>
+    <input type="datetime-local" id="event-start-time" required />
+
+    <label for="event-end-time">End Time:</label>
+    <input type="datetime-local" id="event-end-time" required />
+
+    <button type="submit">Create Event</button>
+    </form>
+
 </div>
+</div>
+
