@@ -314,8 +314,7 @@ Devise.setup do |config|
   config.omniauth :google_oauth2, 
     Rails.application.credentials.dig(:google, :client_id),
     Rails.application.credentials.dig(:google, :client_secret_id),
-    scope: 'email,profile,https://www.googleapis.com/auth/calendar,offline',
-    access_type: 'offline',
+    scope: 'email,profile, https://www.googleapis.com/auth/calendar',
     prompt: 'consent'
 
 end

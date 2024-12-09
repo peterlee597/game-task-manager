@@ -38,6 +38,7 @@
 
         <div id="hometask">
             <h1 class="task-header" id="class-header">Tasks</h1>
+            <h1 class = "task-header"><%= link_to "Create New Task", new_task_path %></h1><br>
                 <% if user_signed_in? %>
                 <% if @tasks.any? %>
                     <ul id="task-list">
@@ -49,13 +50,13 @@
                 <% end %>
                 <% else %>
                 <% end %>
-        </div>  
+        </div>
     <div = "calendar">                     
     <iframe src="https://calendar.google.com/calendar/embed?src=peterlee597%40gmail.com&ctz=America%2FChicago"
      style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
     </div>
 
-    <div>
+    <div id = "goals">
     <h2>Your Goals</h2>
     <%= link_to "Create New Goal", new_goal_path %>
     
