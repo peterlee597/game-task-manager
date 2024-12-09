@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
-  resources :tasks
+
   root 'homepage#index'
   resources :categories
   resources :goals
   
+  resources :tasks do
+    member do
+      patch :complete  # Mark a task as complete
+    end
+  end
+
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
     sessions: 'users/sessions',

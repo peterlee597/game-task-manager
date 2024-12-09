@@ -1,0 +1,1 @@
+document.querySelector(`#task_<%= @task.id %> .complete-checkbox`).checked = <%= @task.completed ? 'true' : 'false' %>;

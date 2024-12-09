@@ -14,6 +14,21 @@
 <%= link_to "Create Account", new_user_registration_path %>
 <% end %>
 
+<% if user_signed_in? %>
+  <h2>Your Level: <%= @user_level.level %></h2>
+  <p>XP: <%= @user_level.xp %></p>
+
+  <!-- XP Progress Bar -->
+  <div class="xp-container">
+    <div class="xp-bar" style="width: <%= @xp_progress %>%;"></div>
+  </div>
+
+  <!-- Level up notification -->
+  <% if @xp_progress == 100 %>
+    <p class="level-up-notification">Congratulations! You've leveled up!</p>
+  <% end %>
+<% end %>
+
 <div class ="parent">
 
     <div class ="background-container">

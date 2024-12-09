@@ -14,3 +14,20 @@
 </div>
 
 <%= link_to "New task", new_task_path %>
+
+<% @tasks.each do |task| %>
+  <li>
+    <%= task.name %>
+
+    <!-- Form to mark the task as completed -->
+    <%= form_with(model: task, method: :patch, local: true) do |form| %>
+      <%= form.hidden_field :completed, value: 'false' %> <!-- Ensure false is sent when unchecked -->
+      <%= form.check_box :completed, {}, true, false %>  <!-- Checkbox to mark task as completed -->
+      <%= form.submit "Mark as Completed" %>
+    <% end %>
+
+    <% if task.completed %>
+      <span class="badge badge-success">Completed</span>
+    <% end %>
+  </li>
+<% end %>
