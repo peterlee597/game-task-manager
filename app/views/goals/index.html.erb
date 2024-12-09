@@ -1,0 +1,13 @@
+<h1>Your Goals</h1>
+
+<%= link_to "Create New Goal", new_goal_path %>
+
+<ul>
+  <% @goals.each do |goal| %>
+    <li>
+      <%= link_to goal.title, goal_path(goal) %> | 
+      <%= link_to "Edit", edit_goal_path(goal) %> | 
+      <%= link_to "Delete", goal_path(goal), method: :delete, data: { confirm: "Are you sure?" } %>
+    </li>
+  <% end %>
+</ul

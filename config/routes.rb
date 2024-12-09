@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   resources :tasks
   root 'homepage#index'
   resources :categories
-
+  resources :goals
+  
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
     sessions: 'users/sessions',
