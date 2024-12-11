@@ -1,8 +1,15 @@
 class HomepageController < ApplicationController
   def index
-    @tasks = current_user.tasks
-    @goals = current_user.goals
-    @user_level = current_user.level
+    if user_signed_in?
+      @tasks = current_user.tasks
+      @goals = current_user.goals
+      @user_level = current_user.level
+    else
+      # You can handle the case where no user is signed in
+      @tasks = []
+      @goals = []
+      @user_level = nil
+    end
   end
   
   def show 

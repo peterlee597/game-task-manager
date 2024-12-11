@@ -1,3 +1,8 @@
+#title{
+   display: flex; 
+   align-items: center;  
+   justify-content: center;
+}  
 .header{
     color:black;
     text-align:center;
@@ -12,9 +17,13 @@
     font-weight: 400;
     font-style: normal;
 }
-body{
-    background-color:grey;
+body {
+  background-image: image-url('background-brick.png'); 
+  background-repeat: repeat;  
+  background-size: auto;      
+  background-attachment: fixed; 
 }
+    
 
 .parent{
     display:flex;
@@ -23,6 +32,42 @@ body{
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+#signin_prompt{
+    display: flex; 
+    align-items: center;  
+    justify-content: center;  
+    width:600px;
+    padding: 37px;
+
+    background-image: image-url('nameframe.png');
+    background-size: cover;         
+    background-position: center top; 
+    background-repeat: no-repeat;
+    resize: vertical;
+    overflow: auto;
+    display: inline;
+    width: 620px;
+    height: 90px;
+}
+
+.my_level{  
+   color:rgba(233, 183, 19, 0.898);
+   font-family: "Press Start 2P", system-ui;
+   font-weight: 400;
+   font-style: normal;
+   font-size: 15px;
+   padding-top:20px;
+   padding-left:150px;
+   padding-bottom:20px;
+   padding-right:150px;
+   
+
+   background-image: image-url('level-frame.png');
+   background-size: cover;         
+   background-position: center top; 
+   background-repeat: no-repeat;
 }
 
 .background-container{
@@ -42,6 +87,29 @@ body{
     border-style: inset;
     margin: 30px;
 }
+
+#goals{
+    background-image: image-url('sign.png');
+    background-size: cover;         
+    background-position: center top; 
+    background-repeat: no-repeat;
+    resize: vertical;
+    overflow: auto;
+    display: inline;
+    width: 1000px;
+    height: 450px;
+    max-height:800px;
+
+    font-size: 11px;
+    color:black;
+    text-align:center;
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    position: relative;
+    top:80px;
+}
+
 #hometask{
     background-image: image-url('scroll.png');
     background-size: cover;         
@@ -59,7 +127,7 @@ body{
     font-size: 12px;
 }
 .task-header{
-    font-size: 12px;
+    font-size: 14px;
     color:black;
     text-align:center;
     font-family: "Press Start 2P", system-ui;
@@ -73,49 +141,116 @@ body{
     font-family: "Press Start 2P", system-ui;
     font-weight: 400;
     font-style: normal;
-    font-size: 8px;  
+    font-size: 11px;  
     text-align: center;
     align-items: center;
     position:relative;
     top:80px;
 }
-
-.xp-container {
-    width: 100%;
-    height: 30px;
-    background-color: #e0e0e0; /* Light grey background */
-    border-radius: 15px;
-    margin-top: 10px;
-    position: relative;
+  .completed {
+    color: green;
+    font-weight: bold;
   }
   
-  /* Actual progress bar */
-  .xp-bar {
-    height: 100%;
-    background-color: lightblue; /* Green color for the progress bar */
-    border-radius: 15px;
-    transition: width 0.3s ease-in-out;
-  }
-  
-  /* Optional: Add a label or text inside the bar */
-  .xp-bar::after {
-    content: "<%= @xp_progress.round %>";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
+  .not-completed {
+    color: red;
     font-weight: bold;
   }
 
-  #goals{
-    font-size: 12px;
+/* CSS Styling for buttons to login/log out/ edit account */
+  .user-actions {
+    position: absolute;
+    top: 10px; 
+    right: 10px; 
+    z-index: 1000; 
+  }
+  
+  .user-actions a,
+  .user-actions button {
+    margin-right: 10px; 
+  }
+  
+  .user-info h2 {
+    display: inline-block; 
+    margin-right: 20px; 
+  }
+
+  /* CSS Styling for the actual buttons */
+  .user-actions .button {
+    background-color: khaki;
+    border: solid;
     color:black;
     text-align:center;
     font-family: "Press Start 2P", system-ui;
     font-weight: 400;
     font-style: normal;
-    position: relative;
-    top:80px;
-    background-color: tan;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 6px;
+    float: right;
   }
+
+  
+.user-actions .link { 
+    background-color: khaki; 
+    border: solid 3px black; 
+    color: black; 
+    text-align: center; 
+    font-family: "Press Start 2P", system-ui; 
+    font-weight: 400; 
+    font-style: normal; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    text-decoration: none; 
+    display: inline-block;
+    cursor: pointer; 
+}
+.user-actions .button:hover {
+    background-color: darkkhaki; 
+    cursor: pointer;  
+  }
+  .user-actions .link:hover {
+    background-color: darkkhaki; 
+    cursor: pointer;  
+  }
+
+  /* XP bar Styling */
+  .xp-bar-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+  .xp-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    margin-top: 10px;
+    position: relative;
+    border-color: black;
+    border:solid;
+    
+  }
+  
+  .xp-progress {
+    height: 100%;
+    background-color: #76c7c0; 
+    border-radius: 10px;
+    transition: width 0.5s ease;
+  }
+  
+  .xp-bar-container h3 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color:black;
+    text-align:center;
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  

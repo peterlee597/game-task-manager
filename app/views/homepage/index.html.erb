@@ -2,31 +2,39 @@
 <% content_for :javascript do %>
     <%= javascript_include_tag "index", type: "module" %>
   <% end %>
+<div id = "title">
+<h1 class ="header">Gamer Task Manager</h1>
+</div><br>
 
-<h1 class="header">Gamer Task Manager</h1>
-
-<% if user_signed_in? %>
-<h2 class="header"><%= current_user.username %> has signed in!</h2>
-<%= link_to "Edit Account", edit_user_registration_path %>
-<%= button_to "Logout", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
-<% else %>
-<%= link_to "Login", new_user_session_path %>
-<%= link_to "Create Account", new_user_registration_path %>
-<% end %>
-
-<% if user_signed_in? %>
-  <h2>Your Level: <%= @user_level.level %></h2>
-  <p>XP: <%= @user_level.xp %></p>
-
-  <!-- XP Progress Bar -->
-  <div class="xp-container">
-    <div class="xp-bar" style="width: <%= @xp_progress %>%;"></div>
-  </div>
-
-  <!-- Level up notification -->
-  <% if @xp_progress == 100 %>
-    <p class="level-up-notification">Congratulations! You've leveled up!</p>
+<div class="user-info">
+  <% if user_signed_in? %>
+    <div id = "signin_prompt">
+      <h2 class="header"><%= current_user.username %> has signed in!</h2>
+    </div>
+    <div class="user-actions">
+      <%= link_to "Edit Account", edit_user_registration_path, class:"link" %>
+      <%= button_to "Log out", destroy_user_session_path, data: {turbo: "false"}, method: :delete, class: "button"%>
+    </div>
+  <% else %>
+    <div class="user-actions">
+      <%= link_to "Login", new_user_session_path, class:"link" %>
+      <%= link_to "Create Account", new_user_registration_path, class:"link" %>
+    </div>
   <% end %>
+</div><br><br>
+
+
+<% if user_signed_in? %>
+<div class = "my_level">
+  <h2>Your Level: <%= @user_level.level %></h2>
+</div>
+  <div class="xp-bar-container">
+  <h3>Your XP: <%= @user_level.xp %> / <%= @user_level.xp_needed_for_level %> XP</h3>
+  <div class="xp-bar">
+    <div class="xp-progress" style="width: <%= (@user_level.xp.to_f / @user_level.xp_needed_for_level) * 100 %>%"></div>
+  </div>
+</div>
+
 <% end %>
 
 <div class ="parent">
@@ -36,31 +44,38 @@
         </div>
     </div>
 
-        <div id="hometask">
-            <h1 class="task-header" id="class-header">Tasks</h1>
-            <h1 class = "task-header"><%= link_to "Create New Task", new_task_path %></h1><br>
-                <% if user_signed_in? %>
-                <% if @tasks.any? %>
-                    <ul id="task-list">
-                        <% @tasks.each do |task| %>
-                        <li>Task : <%= task.name %> | Difficulty : <%= task.xp_reward %> | Complete By: <%= task.due_date %></li><br>
-                        <% end %>
-                    </ul>
-                <% else %>
-                <% end %>
-                <% else %>
-                <% end %>
-        </div>
+  <div id="hometask">
+    <h1 class="task-header" id="class-header">Tasks</h1>
+
+      <% if user_signed_in? %>
+      <h1 class="task-header"><%= link_to "Create New Task", new_task_path %></h1><br>
+        <% if @tasks.any? %>
+          <ul id="task-list">
+            <% @tasks.each do |task| %>
+                <li><%= link_to task.name, task_path(task) %> | Difficulty: <%= task.xp_reward %> | Complete By: <%= task.due_date %><br><br>Status: 
+            <%= raw(task.completed ? "<span class='completed'>Completed</span>" : "<span class='not-completed'>Not Completed</span>")%></li><br>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>No tasks available.</p>
+        <% end %>
+      <% else %>
+        <p class = "task-header">Please sign in to view your tasks.</p>
+      <% end %>
+    </div>
+
     <div = "calendar">                     
     <iframe src="https://calendar.google.com/calendar/embed?src=peterlee597%40gmail.com&ctz=America%2FChicago"
      style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
     </div>
 
     <div id = "goals">
+    <br>
     <h2>Your Goals</h2>
-    <%= link_to "Create New Goal", new_goal_path %>
+    
     
     <% if @goals.any? %>
+    <%= link_to "Create New Goal", new_goal_path %>
       <ul>
         <% @goals.each do |goal| %>
           <li>
@@ -69,10 +84,11 @@
             <%= link_to "Edit", edit_goal_path(goal) %> |
             <%= link_to "Delete", goal_path(goal), method: :delete, data: { confirm: "Are you sure?" } %>
           </li>
+          <br>
         <% end %>
       </ul>
     <% else %>
-      <p>You haven't created any goals yet. <%= link_to "Create your first goal", new_goal_path %></p>
+      <p>Log in to creat goals!</p>
     <% end %>
     </div>
 </div>

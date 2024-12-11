@@ -1,11 +1,14 @@
+<div class = "task_container">
 <% content_for :title, "New task" %>
 
-<h1>New task</h1>
+<h1 id = "task_header">New task</h1>
 
 <%= render "form", task: @task %>
 
 <br>
 
-<div>
+<div class="header">
   <%= link_to "Back to tasks", tasks_path %>
 </div>
+</div>
+
