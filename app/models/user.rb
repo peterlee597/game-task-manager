@@ -6,8 +6,8 @@ class User < ApplicationRecord
   after_create :create_level_if_needed
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :omniauthable, 
-         omniauth_providers: [:google_oauth2]
+         :recoverable, :rememberable, :validatable, :omniauthable,
+         omniauth_providers: [ :google_oauth2 ]
 
   validates :username, presence: true, uniqueness: true
 

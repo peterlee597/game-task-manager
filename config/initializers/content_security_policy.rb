@@ -6,13 +6,13 @@
 
 Rails.application.config.content_security_policy do |policy|
     # Allow scripts and images from Google domains
-    policy.script_src :self, 'https://accounts.google.com', 'https://apis.google.com', 'https://www.gstatic.com'
-    policy.frame_src :self, 'https://accounts.google.com', 'https://calendar.google.com'
-    policy.connect_src :self, 'https://www.googleapis.com', 'https://accounts.google.com'
-  
+    policy.script_src :self, "https://accounts.google.com", "https://apis.google.com", "https://www.gstatic.com"
+    policy.frame_src :self, "https://accounts.google.com", "https://calendar.google.com"
+    policy.connect_src :self, "https://www.googleapis.com", "https://accounts.google.com"
+
     # Ensure you allow your API calls if you're integrating with Google Calendar
-    policy.img_src :self, 'https://www.gstatic.com'
-  
+    policy.img_src :self, "https://www.gstatic.com"
+
     # You may also want to adjust other settings depending on your app
   end
 #

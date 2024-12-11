@@ -16,16 +16,16 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   #   super
   # end
   def google_oauth2
-    auth = request.env['omniauth.auth']
+    auth = request.env["omniauth.auth"]
     user = User.from_omniauth(auth)
 
     if user.present?
-      flash[:success] = t 'devise.omniauth_callbacks.success', kind: 'Google'
+      flash[:success] = t "devise.omniauth_callbacks.success", kind: "Google"
       sign_in_and_redirect user, event: :authentication
       session[:google_token] = user.google_token
     else
       flash[:alert] =
-        t 'devise.omniauth_callbacks.failure', kind: 'Google', reason: "#{auth.info.email} is not authorized."
+        t "devise.omniauth_callbacks.failure", kind: "Google", reason: "#{auth.info.email} is not authorized."
       redirect_to new_user_session_path
       Rails.logger.debug request.env["omniauth.auth"]
     end
@@ -45,6 +45,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   private
     def auth
-      @auth ||= request.env['omniauth.auth']
+      @auth ||= request.env["omniauth.auth"]
     end
 end

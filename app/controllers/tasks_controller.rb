@@ -31,8 +31,8 @@ class TasksController < ApplicationController
     end
 
     respond_to do |format|
-      if @task.save        
-         # Create Google Calendar event
+      if @task.save
+        # Create Google Calendar event
         google_calendar_service = GoogleCalendarService.new(current_user)
         google_calendar_service.create_event(@task)
 
@@ -55,14 +55,14 @@ class TasksController < ApplicationController
     # Log the task's current state before update
     Rails.logger.debug "Before Update: Task completed = #{@task.completed}"
 
-    if params[:task][:completed] == 'true' && !@task.completed
+    if params[:task][:completed] == "true" && !@task.completed
       Rails.logger.debug "Task #{@task.id} is being marked as completed."
       @task.complete
     end
 
     if @task.update(task_params)
       Rails.logger.debug "Task #{@task.id} updated successfully."
-      redirect_to tasks_path, notice: 'Task was successfully updated.'
+      redirect_to tasks_path, notice: "Task was successfully updated."
     else
       Rails.logger.debug "Task #{@task.id} failed to update."
       render :edit, status: :unprocessable_entity

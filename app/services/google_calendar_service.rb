@@ -2,7 +2,7 @@ class GoogleCalendarService
   def initialize(user)
     @user = user
     @client = Google::Apis::CalendarV3::CalendarService.new
-    @client.client_options.application_name = 'GamerTaskManager'
+    @client.client_options.application_name = "GamerTaskManager"
     @client.authorization = @user.google_token
 
     # Ensure correct credentials retrieval from Rails credentials file
@@ -10,7 +10,7 @@ class GoogleCalendarService
     client_secret = Rails.application.credentials.dig(:google, :client_secret_id)
 
     if client_id.nil? || client_secret.nil?
-      raise 'Google API credentials are missing'
+      raise "Google API credentials are missing"
     end
 
     # Set up the OAuth2 client with credentials and access token
@@ -18,7 +18,7 @@ class GoogleCalendarService
       client_id: client_id,
       client_secret: client_secret,
       access_token: @user.google_token,
-      token_credential_uri: 'https://oauth2.googleapis.com/token'
+      token_credential_uri: "https://oauth2.googleapis.com/token"
     )
 
     # Check if the access token is expired, refresh it if necessary
@@ -39,26 +39,26 @@ class GoogleCalendarService
         client_id: Rails.application.credentials.dig(:google, :client_id),
         client_secret: Rails.application.credentials.dig(:google, :client_secret_id),
         refresh_token: @user.google_refresh_token,
-        token_credential_uri: 'https://oauth2.googleapis.com/token'
+        token_credential_uri: "https://oauth2.googleapis.com/token"
       )
-  
+
       begin
         client.fetch_access_token!
-        
+
         Rails.logger.info("New access token: #{client.access_token}")
-  
+
         @user.update(
           google_token: client.access_token,
           token_expiry_time: Time.current + client.expires_in.seconds
         )
-        
+
         @client.authorization = @user.google_token  # Ensure you're using the updated token
       rescue Signet::AuthorizationError => e
         Rails.logger.error("Error refreshing Google OAuth token: #{e.message}")
-        raise 'Token refresh failed. Please authenticate again.'
+        raise "Token refresh failed. Please authenticate again."
       end
     else
-      raise 'User refresh token is missing. Please authenticate again.'
+      raise "User refresh token is missing. Please authenticate again."
     end
   end
 
@@ -66,21 +66,21 @@ class GoogleCalendarService
   def create_event(task)
     # Ensure task has start_time and end_time set
     if task.start_time.nil? || task.end_time.nil?
-      raise 'Task must have both start_time and end_time'
+      raise "Task must have both start_time and end_time"
     end
-    
+
 
     # Create the event
     event = Google::Apis::CalendarV3::Event.new(
       summary: task.name,  # Ensure task has name (title)
       description: task.description,  # Ensure task has description
       start: Google::Apis::CalendarV3::EventDateTime.new(
-        date_time: task.start_time.to_datetime.rfc3339, 
-        time_zone: 'America/Chicago'  # Adjust if necessary to use user's time zone
+        date_time: task.start_time.to_datetime.rfc3339,
+        time_zone: "America/Chicago"  # Adjust if necessary to use user's time zone
       ),
       end: Google::Apis::CalendarV3::EventDateTime.new(
-        date_time: task.end_time.to_datetime.rfc3339, 
-        time_zone: 'America/Chicago'  # Adjust if necessary to use user's time zone
+        date_time: task.end_time.to_datetime.rfc3339,
+        time_zone: "America/Chicago"  # Adjust if necessary to use user's time zone
       )
     )
 
@@ -90,7 +90,7 @@ class GoogleCalendarService
 
     # Attempt to create the event in Google Calendar
     begin
-      @client.insert_event('primary', event)
+      @client.insert_event("primary", event)
     rescue Google::Apis::ClientError => e
       Rails.logger.error("Failed to create event on Google Calendar: #{e.message}")
       raise "Error creating Google Calendar event: #{e.message}"
