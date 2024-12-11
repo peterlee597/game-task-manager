@@ -11,9 +11,9 @@ class HomepageController < ApplicationController
       @user_level = nil
     end
   end
-  
-  def show 
-  end 
+
+  def show
+  end
 
   private
   def calculate_xp_progress(level)
@@ -22,7 +22,7 @@ class HomepageController < ApplicationController
     current_xp = level.xp
 
     # Calculate the percentage of progress towards the next level
-    xp_progress = [(current_xp.to_f / xp_needed_for_next_level.to_f) * 100, 100].min
+    xp_progress = [ (current_xp.to_f / xp_needed_for_next_level.to_f) * 100, 100 ].min
 
     xp_progress
   end

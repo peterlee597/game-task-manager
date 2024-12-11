@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-
-  root 'homepage#index'
+  root "homepage#index"
   resources :categories
   resources :goals
-  
+
   resources :tasks do
     member do
       patch :complete  # Mark a task as complete
@@ -11,11 +10,11 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, controllers: {
-    omniauth_callbacks: 'users/omniauth_callbacks',
-    sessions: 'users/sessions',
-    registrations: 'users/registrations'
+    omniauth_callbacks: "users/omniauth_callbacks",
+    sessions: "users/sessions",
+    registrations: "users/registrations"
   }
-  get 'callback', to: 'sessions#callback'
+  get "callback", to: "sessions#callback"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
