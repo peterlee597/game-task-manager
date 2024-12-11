@@ -1,5 +1,7 @@
-<h1><%= @goal.title %></h1>
+<div class = "goals_index">
+<h1 id = "goal_header"><%= @goal.title %></h1>
 <p><%= @goal.description %></p>
 
 <%= link_to "Edit", edit_goal_path(@goal) %> |
 <%= link_to "Back to Goals", goals_path %>
+</div>
