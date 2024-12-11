@@ -1,25 +1,6 @@
 # README
+Welcome to the 'Gamer Task Manager' application! The purpose of this application is to help gamers organize, manage, and complete their day to day task. Gaming addiction is something that is very common amongst youths and adults in modern times. As a result, sometimes it becomes difficult for gamers to focus on completing and keeping track important task. This app was created to be appealing to those gamers by implementing feature 'gamer like' features!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
 
 * ...
 # game-task-manager
