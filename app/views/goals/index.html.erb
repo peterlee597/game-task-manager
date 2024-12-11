@@ -1,13 +1,20 @@
-<h1>Your Goals</h1>
+<div class = "goals_index">
+<h1 id = "goal_header">Your Goals</h1>
 
 <%= link_to "Create New Goal", new_goal_path %>
 
+<div id = "goal_list">
 <ul>
   <% @goals.each do |goal| %>
     <li>
       <%= link_to goal.title, goal_path(goal) %> | 
-      <%= link_to "Edit", edit_goal_path(goal) %> | 
-      <%= link_to "Delete", goal_path(goal), method: :delete, data: { confirm: "Are you sure?" } %>
-    </li>
+      <%= link_to "Edit", edit_goal_path(goal) %><br>
+      <%= button_to "Delete", goal_path(goal), method: :delete, data: { confirm: "Are you sure?" } %>
+    </li><br>
   <% end %>
-</ul
+</ul>
+</div>
+
+<div id = "goal_header">
+    <%= link_to "Home", root_path %>
+</div>

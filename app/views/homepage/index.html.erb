@@ -57,17 +57,20 @@
             <% end %>
           </ul>
         <% else %>
-          <p>No tasks available.</p>
         <% end %>
       <% else %>
         <p class = "task-header">Please sign in to view your tasks.</p>
       <% end %>
     </div>
 
-    <div = "calendar">                     
-    <iframe src="https://calendar.google.com/calendar/embed?src=peterlee597%40gmail.com&ctz=America%2FChicago"
-     style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-    </div>
+    <% if user_signed_in? %>
+  <div class="calendar">
+    <iframe src="https://calendar.google.com/calendar/embed?src=<%= current_user.calendar_id %>&ctz=America%2FChicago"
+      style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+  </div>
+<% else %>
+  <p>Please sign in to view your Google Calendar.</p>
+<% end %>
 
     <div id = "goals">
     <br>
@@ -88,7 +91,7 @@
         <% end %>
       </ul>
     <% else %>
-      <p>Log in to creat goals!</p>
+      <p>Log in to create goals!</p>
     <% end %>
     </div>
 </div>
