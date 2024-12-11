@@ -1,0 +1,63 @@
+.task_style{
+    color:black;
+    text-align:center;
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal
+}
+
+.task_container {
+    display: inline-block;
+    text-align: center;
+    justify-content: center;
+    padding:40px;
+
+    background-image: image-url('long-scroll.png');
+    background-size: cover;         
+    background-position: center center; 
+    background-repeat: no-repeat; 
+    
+}
+
+body{
+    place-items: center;
+}
+#task_header{
+    color:black;
+    text-align:center;
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+}
+#task{
+    color:black;
+    text-align:center;
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+}
+#task_ui{
+    color:black;
+    text-align:center;
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px; 
+}
+#badge-success{
+    color:darkgreen;
+}
+#name{
+    color:blue;
+}
+#description{
+    color:lightblue;
+}
+#due_date{
+    color:purple;
+}
+#xp_reward{
+    color:goldenrod;
+}
