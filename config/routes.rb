@@ -2,13 +2,15 @@ Rails.application.routes.draw do
   root "homepage#index"
   resources :categories
   resources :goals
+  get '/auth/google_oauth2/callback', to: 'users/sessions#google_oauth2'  # Change action name if needed
+  get '/auth/failure', to: 'users/sessions#auth_failure'
 
   resources :tasks do
     member do
       patch :complete  # Mark a task as complete
     end
   end
-
+  
   devise_for :users, controllers: {
     omniauth_callbacks: "users/omniauth_callbacks",
     sessions: "users/sessions",
