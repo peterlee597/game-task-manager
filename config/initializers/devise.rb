@@ -318,5 +318,5 @@ Devise.setup do |config|
     #Rails.application.credentials.dig(:google, :client_secret_id),
     scope: "email,profile, https://www.googleapis.com/auth/calendar",
     prompt: "consent",
-    redirect_uri: 'https://serene-badlands-52345-6185c212a707.herokuapp.com/auth/google_oauth2/callback'
+    redirect_uri: 'https://fierce-refuge-63035-ccdd82a86b57.herokuapp.com/auth/google_oauth2/callback'
 end
