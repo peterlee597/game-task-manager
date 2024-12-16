@@ -10,34 +10,34 @@
       </ul>
     </div>
   <% end %>
-  <div>
+  <div id = "name">
     <%= form.label :name, style: "display: block" %><br>
     <%= form.text_field :name %>
   </div><br>
 
-  <div>
+  <div id ="description">
     <%= form.label :description, style: "display: block" %><br>
     <%= form.text_area :description %>
   </div><br>
 
-  <div>
+  <div id ="due_date">
     <%= form.label :due_date, style: "display: block" %><br>
     <%= form.date_field :due_date %>
   </div><br>
   
-  <div>
+  <div id = "time">
   <%= form.label :start_time, style: "display: block" %><br>
   <%= form.datetime_local_field :start_time %>
   <%= form.label :end_time, style: "display: block" %><br>
   <%= form.datetime_local_field :end_time %>
   </div><br>
 
-  <div>
+  <div id ="xp_reward">
     <%= form.label :xp_reward, style: "display: block" %><br>
     <%= form.select :xp_reward, Task.xp_rewards.keys.map { |key| [key.humanize, key.to_s] }, prompt: "Select an XP Reward" %>
   </div><br>
 
-  <div>
+  <div id = "time">
     <%= form.label :category_id %><br><br>
     <%= form.collection_select :category_id, @categories, :id, :name, prompt: "Select a category" %>
   </div><br>

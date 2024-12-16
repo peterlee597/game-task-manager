@@ -4,12 +4,14 @@
 
 <div id = "task">
 <h1 class = "header">Tasks</h1>
-
   <% @tasks.each do |task| %>
+    <div id ="listed-task">
+    <br>
     <%= render task %>
     <p>
       <%= link_to "Show this task", task %>
     </p>
+    </div><br>
   <% end %>
 </div>
 <br>

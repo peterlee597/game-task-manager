@@ -77,14 +77,29 @@ body {
     padding:0;
 
 }
+@keyframes backgroundAnimation{
+  0% {
+    background-image: image-url('frame1.png');
+  }
+  33% {
+    background-image: image-url('frame2.png');
+  }
+  66% {
+    background-image: image-url('frame3.png');
+  }
+  100% {
+    background-image: image-url('frame1.png');
+  }
+}
 .background-image{
-    background-image: image-url('pixil-frame-0.png');
+    animation: backgroundAnimation .5s infinite;
     background-size: cover;         
     background-position: center center; 
     background-repeat: no-repeat;   
     height:410px;
     width:626px;
-    border-style: inset;
+    border-style: solid;
+    border-color: black;
     margin: 30px;
 }
 
@@ -253,4 +268,16 @@ body {
     font-style: normal;
   }
   
-  
+  .headerc{
+    color:black;
+    text-align:center;
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    border-style: solid;
+    background-color: tan;
+    padding: 10px;
+  }
+  .calendar{
+    padding: 20px;
+  }

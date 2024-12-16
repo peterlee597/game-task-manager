@@ -10,7 +10,8 @@
     display: inline-block;
     text-align: center;
     justify-content: center;
-    padding:40px;
+    width:320px;
+    height:800px;
 
     background-image: image-url('long-scroll.png');
     background-size: cover;         
@@ -63,7 +64,7 @@ body{
     font-style: normal;
 }
 #description{
-    color:lightblue;
+    color:rgb(43, 118, 143);
     text-align:center;
     font-family: "Press Start 2P", system-ui;
     font-weight: 400;
@@ -90,4 +91,24 @@ body{
     background-position: center center; 
     background-repeat: no-repeat;
     padding:5px;
+}
+#listed-task{
+    background-image: image-url('task-list2.png');
+    background-size: cover;         
+    background-position: center center; 
+    background-repeat: no-repeat;
+    width:330px;
+    height:180px;
+}
+#task_ui{
+    background-color: khaki;
+    padding:15px;
+    border-style: solid;
+}
+#time{
+    color:black;
+    text-align:center;
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal;
 }
