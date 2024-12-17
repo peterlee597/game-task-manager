@@ -17,19 +17,26 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # end
   def google_oauth2
     auth = request.env["omniauth.auth"]
+
+    # Log if auth is missing
+    if auth.nil?
+      Rails.logger.error "OmniAuth auth data is missing"
+      flash[:alert] = "Authentication data is missing. Please try again."
+      redirect_to new_user_session_path and return
+    end
+
     user = User.from_omniauth(auth)
 
     if user.present?
-      flash[:success] = t "devise.omniauth_callbacks.success", kind: "Google"
+      flash[:success] = t("devise.omniauth_callbacks.success", kind: "Google")
       sign_in_and_redirect user, event: :authentication
       session[:google_token] = user.google_token
     else
-      flash[:alert] =
-        t "devise.omniauth_callbacks.failure", kind: "Google", reason: "#{auth.info.email} is not authorized."
+      flash[:alert] = t("devise.omniauth_callbacks.failure", kind: "Google", reason: "#{auth.info.email} is not authorized.")
       redirect_to new_user_session_path
-      Rails.logger.debug request.env["omniauth.auth"]
     end
   end
+
 
   # GET|POST /users/auth/twitter/callback
   # def failure
