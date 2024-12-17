@@ -312,11 +312,11 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   config.omniauth :google_oauth2,
-    ENV['GOOGLE_CLIENT_ID'],
-    ENV['GOOGLE_CLIENT_SECRET'],
-    #Rails.application.credentials.dig(:google, :client_id),
-    #Rails.application.credentials.dig(:google, :client_secret_id),
+    ENV["GOOGLE_CLIENT_ID"],
+    ENV["GOOGLE_CLIENT_SECRET"],
+    # Rails.application.credentials.dig(:google, :client_id),
+    # Rails.application.credentials.dig(:google, :client_secret_id),
     scope: "email,profile, https://www.googleapis.com/auth/calendar",
     prompt: "consent",
-    redirect_uri: 'https://fierce-refuge-63035-ccdd82a86b57.herokuapp.com/auth/google_oauth2/callback'
+    redirect_uri: "https://fierce-refuge-63035-ccdd82a86b57.herokuapp.com/auth/google_oauth2/callback"
 end

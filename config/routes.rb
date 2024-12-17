@@ -1,32 +1,38 @@
 Rails.application.routes.draw do
+  # Root route
   root "homepage#index"
+
+  # Define custom routes
   resources :categories
   resources :goals
-  get '/auth/google_oauth2/callback', to: 'users/sessions#google_oauth2'  # Change action name if needed
-  get '/auth/failure', to: 'users/sessions#auth_failure'
 
+  # Tasks routes with a custom member route for completing tasks
   resources :tasks do
     member do
       patch :complete  # Mark a task as complete
     end
   end
   
-  devise_for :users, controllers: {
-    omniauth_callbacks: "users/omniauth_callbacks",
-    sessions: "users/sessions",
-    registrations: "users/registrations"
-  }
-  get "callback", to: "sessions#callback"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # Health check endpoint for uptime monitoring
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/*
+  # Dynamic PWA files (service worker, manifest)
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # Devise routes for users (session, registration, omniauth callbacks)
+  devise_for :users, controllers: {
+    omniauth_callbacks: "users/omniauth_callbacks", # Custom controller for OmniAuth
+    sessions: "users/sessions",                   # Custom session controller
+    registrations: "users/registrations"          # Custom registration controller
+  }
+
+  # Custom route for handling OAuth callback within the Devise scope
+  devise_scope :user do
+    get '/auth/google_oauth2/callback', to: 'users/omniauth_callbacks#google_oauth2'
+    get '/auth/failure', to: 'users/omniauth_callbacks#failure'
+  end
+
+  # Other routes you may have:
+  # get "callback", to: "sessions#callback"  # This is redundant, remove it
 end

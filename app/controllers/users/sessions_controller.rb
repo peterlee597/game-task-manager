@@ -19,13 +19,13 @@ class Users::SessionsController < Devise::SessionsController
   # end
   def google_oauth2
     # You can access the OAuth information via request.env['omniauth.auth']
-    auth = request.env['omniauth.auth']
+    auth = request.env["omniauth.auth"]
 
     # If you have a User model, handle user creation or update here
     user = User.from_omniauth(auth)
     sign_in_and_redirect user, event: :authentication # This will log the user in and redirect
   end
-  
+
   def callback
     # This action handles the OAuth callback
     auth_code = params[:code]
