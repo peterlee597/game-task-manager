@@ -20,6 +20,7 @@ class User < ApplicationRecord
     # Avoid updating fields if no valid info is found
     user.email = auth.info.email if auth.info.email.present?
     user.username = auth.info.name if auth.info.name.present?
+    user.username = user.username + rand(1000..9999).to_s if User.exists?(username: user.username)
     user.password = Devise.friendly_token[0, 20] if user.password.blank?
     user.calendar_id = auth.info.email if user.calendar_id.blank?
 
